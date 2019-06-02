@@ -23,7 +23,7 @@ pod 'Modernistik'
 ```
 
 ## Phoenix Queue
-The Phoenix is a persistence job queue system for Swift. It allows to build idempotent and asynchronous job tasks using Foundation's `Operation` (NSOperation), that allows for jobs to be "stored" when the application is about to terminate, and be restored (resume) once the app has relaunched.
+The Phoenix is a persistence job queue system for Swift. It allows to building idempotent and asynchronous job tasks using Foundation's `Operation` (NSOperation), that allows for jobs to be "stored" when the application is about to terminate, and be restored (resume) once the app has relaunched. 
 
 ```ruby
 pod 'Modernistik/Phoenix'
