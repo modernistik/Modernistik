@@ -16,5 +16,9 @@ class ViewController: UIViewController {
     }
 
 
+    @IBAction func startOperations(_ sender: Any) {
+        SleepWorker.enqueue()
+        BasicWorker.enqueue(params: ["loop": 25])
+    }
 }
 

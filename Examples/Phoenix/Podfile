@@ -4,7 +4,7 @@ platform :ios, '10.0'
 target 'Phoenix' do
   use_frameworks!
   pod 'Modernistik/Phoenix', :path => '../../'
-
+  pod 'Alamofire'
 end
 
 post_install do |installer|

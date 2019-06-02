@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,8 @@
 		45134A2822A44DAD00B57293 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45134A2622A44DAD00B57293 /* Main.storyboard */; };
 		45134A2A22A44DAE00B57293 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45134A2922A44DAE00B57293 /* Assets.xcassets */; };
 		45134A2D22A44DAE00B57293 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45134A2B22A44DAE00B57293 /* LaunchScreen.storyboard */; };
+		4564BC8D22A4731300E1C9BA /* NetworkCheckOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4564BC8C22A4731300E1C9BA /* NetworkCheckOperation.swift */; };
+		4564BC8F22A4740A00E1C9BA /* Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4564BC8E22A4740A00E1C9BA /* Examples.swift */; };
 		5A52362EEAF26ED56E2C0026 /* Pods_Phoenix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB9045486F38C12EE2BFD15D /* Pods_Phoenix.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +25,8 @@
 		45134A2922A44DAE00B57293 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45134A2C22A44DAE00B57293 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45134A2E22A44DAE00B57293 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4564BC8C22A4731300E1C9BA /* NetworkCheckOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkCheckOperation.swift; sourceTree = "<group>"; };
+		4564BC8E22A4740A00E1C9BA /* Examples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Examples.swift; sourceTree = "<group>"; };
 		5841C6EDF91DD3DA5737F3EE /* Pods-Phoenix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Phoenix.release.xcconfig"; path = "Target Support Files/Pods-Phoenix/Pods-Phoenix.release.xcconfig"; sourceTree = "<group>"; };
 		E32B1C4154D556868A8045F0 /* Pods-Phoenix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Phoenix.debug.xcconfig"; path = "Target Support Files/Pods-Phoenix/Pods-Phoenix.debug.xcconfig"; sourceTree = "<group>"; };
 		EB9045486F38C12EE2BFD15D /* Pods_Phoenix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Phoenix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,8 +73,7 @@
 		45134A2122A44DAD00B57293 /* Phoenix */ = {
 			isa = PBXGroup;
 			children = (
-				45134A2222A44DAD00B57293 /* AppDelegate.swift */,
-				45134A2422A44DAD00B57293 /* ViewController.swift */,
+				4564BC8B22A472F300E1C9BA /* Classes */,
 				45134A2622A44DAD00B57293 /* Main.storyboard */,
 				45134A2922A44DAE00B57293 /* Assets.xcassets */,
 				45134A2B22A44DAE00B57293 /* LaunchScreen.storyboard */,
@@ -79,13 +82,23 @@
 			path = Phoenix;
 			sourceTree = "<group>";
 		};
+		4564BC8B22A472F300E1C9BA /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4564BC8C22A4731300E1C9BA /* NetworkCheckOperation.swift */,
+				45134A2222A44DAD00B57293 /* AppDelegate.swift */,
+				45134A2422A44DAD00B57293 /* ViewController.swift */,
+				4564BC8E22A4740A00E1C9BA /* Examples.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		81C064DCCA74ADF27ECBBF51 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				E32B1C4154D556868A8045F0 /* Pods-Phoenix.debug.xcconfig */,
 				5841C6EDF91DD3DA5737F3EE /* Pods-Phoenix.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -204,6 +217,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4564BC8F22A4740A00E1C9BA /* Examples.swift in Sources */,
+				4564BC8D22A4731300E1C9BA /* NetworkCheckOperation.swift in Sources */,
 				45134A2522A44DAD00B57293 /* ViewController.swift in Sources */,
 				45134A2322A44DAD00B57293 /* AppDelegate.swift in Sources */,
 			);
