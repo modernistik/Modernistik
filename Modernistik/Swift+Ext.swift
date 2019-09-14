@@ -4,6 +4,8 @@
 //
 
 import Foundation
+import CoreGraphics
+import UIKit
 
 /// Alias for `[AnyHashable: Any]`
 public typealias ObjectDictionary = [AnyHashable: Any?]

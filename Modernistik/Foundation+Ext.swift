@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit
 
 /// A basic empty completion block that provides an error in case of failure.
 /// - parameter error: An error if not successful.

@@ -5,6 +5,8 @@
 //  Created by Anthony Persaud on 1/4/18.
 //  Copyright © 2018 Modernistik LLC. All rights reserved.
 //
+import Foundation
+import UIKit
 
 public typealias LaunchStateResult = (LaunchState) -> Void
 

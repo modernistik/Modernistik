@@ -7,6 +7,8 @@
 //
 
 import QuartzCore
+import CoreGraphics
+import UIKit
 
 /// A view that is backed by a CAGradientLayer in order to draw gradients quickly. This
 /// class is useful for small gradients or ones that need animation as it fast and takes advantage
