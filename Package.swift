@@ -25,7 +25,7 @@ let package = Package(
             name: "Modernistik",
             dependencies: [],
             path: "Sources",
-            exclude: ["Examples", "modernistik.png", "README.md"]),
+            exclude: []),
         .testTarget(
             name: "ModernistikTests",
             dependencies: ["Modernistik"]),
