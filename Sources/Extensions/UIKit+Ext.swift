@@ -84,16 +84,14 @@ extension UIApplication {
 
     /// Returns the current window that is in focus.
     var keyWindow: UIWindow? {
-        if #available(iOS 13.0, *) {
-            return UIApplication.shared.windows.first(where: \.isKeyWindow)
-        } else {
-            return UIApplication.shared.keyWindow
-        }
+        return UIApplication.shared
+            .connectedScenes
+            .filter({$0.activationState == .foregroundActive})
+            .compactMap({$0 as? UIWindowScene})
+            .first?.windows.first(where: \.isKeyWindow)
     }
 
     /// Returns the scene of the key window that is in focus.
-    @available(iOS 13.0, *)
-    @available(tvOS 13.0, *)
     var keyScene: UIWindowScene? {
         keyWindow?.windowScene
     }
@@ -335,7 +333,6 @@ extension UIView {
         CATransaction.commit()
     }
 
-    @available(iOS 10.0, tvOS 10, *)
     /// Animate the change in alpha of the view.
     public func fade(to: CGFloat, duration: TimeInterval = 0.25, completion: CompletionBlock? = nil) {
         if alpha == to { completion?(); return }
@@ -349,13 +346,11 @@ extension UIView {
     }
 
     /// Animate the fade out the view.
-    @available(iOS 10.0, tvOS 10, *)
     public func fadeOut(completion: CompletionBlock? = nil) {
         fade(to: 0, completion: completion)
     }
 
     /// Animate the fade in the view.
-    @available(iOS 10.0, tvOS 10, *)
     public func fadeIn(completion: CompletionBlock? = nil) {
         fade(to: 1, completion: completion)
     }
