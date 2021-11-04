@@ -162,14 +162,6 @@ public func async_main(_ closure: @escaping CompletionBlock) {
     DispatchQueue.main.async(execute: closure)
 }
 
-/// Dispatch a block in the background queue
-///
-/// - parameter closure: The closure to execute on the background thread.
-@available(*, deprecated, renamed: "dispatch(_:closure:)", message: "This method has been renamed.")
-public func async_background(_ closure: @escaping CompletionBlock) {
-    DispatchQueue.global(qos: .background).async(execute: closure)
-}
-
 /// Dispatch a block with in the background using a specified quality of service.
 /// ```
 ///   dispatch(.background) {
@@ -239,5 +231,49 @@ extension Encodable {
     /// Return a serialized JSON string representing this object.
     public var jsonString: String? {
         jsonData?.utf8String
+    }
+}
+
+
+// Easier to get the decoding error description
+public extension DecodingError {
+    static func debugDescription(error: Error) -> String {
+        var m = error.localizedDescription
+        switch error {
+        case let DecodingError.dataCorrupted(context):
+            m = "Failed to decode the object. \(context.debugDescription)"
+        case let DecodingError.keyNotFound(key, context):
+            m = "Failed decoding key \(key) note found: \(context.debugDescription)"
+        case let DecodingError.typeMismatch(type, context):
+            m = "Failed decoding type \(type) mismatch: \(context.debugDescription)"
+        case let DecodingError.valueNotFound(type, context):
+            m = "Failed decoding value of type \(type) not found: \(context.debugDescription)"
+        default:
+            m = "Unkonwn DecodingError type: \(error.localizedDescription)"
+        }
+        return m
+    }
+
+    var decodingErrorDescription: String {
+        var key = "unknown"
+        var msg = localizedDescription
+        switch self {
+        case let .dataCorrupted(context):
+            key = context.codingPath.last?.stringValue ?? key
+            msg = context.debugDescription
+        case let .keyNotFound(_, context):
+            key = context.codingPath.last?.stringValue ?? key
+            msg = context.debugDescription
+        case let .typeMismatch(_, context):
+            key = context.codingPath.last?.stringValue ?? key
+            msg = context.debugDescription
+        case let .valueNotFound(_, context):
+            key = context.codingPath.last?.stringValue ?? key
+            msg = context.debugDescription
+        @unknown default:
+            print("Failed to handle new unknown value for decoding error.")
+            assertionFailure("Failed to handle new unknown value for decoding error.")
+        }
+        return "[Decoding Error] \(key)] => \(msg)"
     }
 }
