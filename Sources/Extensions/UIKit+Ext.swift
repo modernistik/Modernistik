@@ -83,6 +83,7 @@ extension UIApplication {
     }
 
     /// Returns the current window that is in focus.
+    public
     var keyWindow: UIWindow? {
         return UIApplication.shared
             .connectedScenes
@@ -92,6 +93,7 @@ extension UIApplication {
     }
 
     /// Returns the scene of the key window that is in focus.
+    public
     var keyScene: UIWindowScene? {
         keyWindow?.windowScene
     }
