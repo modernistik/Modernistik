@@ -25,7 +25,7 @@ public enum LaunchState {
     case upgrade
 }
 
-extension UIApplicationDelegate where Self: UIResponder {
+public extension UIApplicationDelegate where Self: UIResponder {
     /**
      Method to calls to update the launch state. The completion
      handler will provide information on whether it is an install,
@@ -47,12 +47,12 @@ extension UIApplicationDelegate where Self: UIResponder {
       ````
      - parameter completion: The result block with the determined launch state.
      */
-    public func updateLaunchState(completion: LaunchStateResult) {
+    func updateLaunchState(completion: LaunchStateResult) {
         UIApplication.updateLaunchState(completion: completion)
     }
 }
 
-extension UIApplication {
+public extension UIApplication {
     /**
      Method to calls to update the launch state. The completion
      handler will provide information on whether it is an install,
@@ -74,10 +74,14 @@ extension UIApplication {
      ````
      - parameter completion: The result block with the determined launch state.
      */
-    public func updateLaunchState(completion: LaunchStateResult) {
+    func updateLaunchState(completion: LaunchStateResult) {
         UIApplication.updateLaunchState(completion: completion)
     }
 
+    /**
+     The UserDefaults key used to store the current build version.
+     */
+    private static let AppLastLaunchBuildVersionKey = "MKAppLastLaunchBuildVersionKey"
     /**
      This method provides a hook in handling installs, upgrades and resumes of the app by storing and comparing
      the previous build version that ran with the current one. After the block returns, if the
@@ -104,13 +108,12 @@ extension UIApplication {
 
      - parameter completion: The result block that will with signature `(state) -> Bool`.
      */
-    public static func updateLaunchState(completion: LaunchStateResult) {
+    static func updateLaunchState(completion: LaunchStateResult) {
         // A special value that stores the last build version. This is used to track when the app
         // has been installed and upgraded as the this value should be lower than the current build version.
-        let AppLastLaunchBuildVersionKey = "MKAppLastLaunchBuildVersionKey"
 
         // Get the last stored build version.
-        let previousBuildVersion = UserDefaults.standard.object(forKey: AppLastLaunchBuildVersionKey) as? Int ?? 0
+        let previousBuildVersion = lastKnownBuildVersion
 
         // Get the current build version. This could be newer than the last time the app launched.
         let buildVersion = Bundle.currentBuildVersion
@@ -125,5 +128,12 @@ extension UIApplication {
         }
         completion(result)
         UserDefaults.standard.set(buildVersion, forKey: AppLastLaunchBuildVersionKey)
+    }
+
+    /**
+     Returns the last known (set) build version that had been stored in UserDefaults.
+     */
+    static var lastKnownBuildVersion: Int {
+        UserDefaults.standard.object(forKey: AppLastLaunchBuildVersionKey) as? Int ?? 0
     }
 }
