@@ -70,7 +70,7 @@ import UIKit
                 }
 
                 updateConstant()
-                guard animate else { UIApplication.shared.keyWindow?.setNeedsUpdateConstraints(); return }
+                guard animate else { UIApplication.shared.focusedWindow?.setNeedsUpdateConstraints(); return }
 
                 switch (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber) {
                 case let (.some(duration), .some(curve)):
@@ -82,7 +82,7 @@ import UIKit
                         delay: 0,
                         options: options,
                         animations: {
-                            UIApplication.shared.keyWindow?.layoutIfNeeded()
+                            UIApplication.shared.focusedWindow?.layoutIfNeeded()
                         }, completion: nil
                     )
                 default:
@@ -95,7 +95,7 @@ import UIKit
         @objc public func keyboardWillHideNotification(notification: NSNotification) {
             keyboardVisibleHeight = 0
             updateConstant()
-            guard animate else { UIApplication.shared.keyWindow?.setNeedsUpdateConstraints(); return }
+            guard animate else { UIApplication.shared.focusedWindow?.setNeedsUpdateConstraints(); return }
 
             if let userInfo = notification.userInfo {
                 switch (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber) {
@@ -107,7 +107,7 @@ import UIKit
                         delay: 0,
                         options: options,
                         animations: {
-                            UIApplication.shared.keyWindow?.layoutIfNeeded()
+                            UIApplication.shared.focusedWindow?.layoutIfNeeded()
                         }, completion: nil
                     )
                 default:
