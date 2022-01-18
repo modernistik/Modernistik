@@ -598,6 +598,42 @@ public extension NSAttributedString {
     }
 }
 
+public extension Optional where Wrapped == Double {
+    /// Return 0 string if there is no value
+    var orZero: Wrapped {
+        switch self {
+        case .some(let value):
+            return value
+        case .none:
+            return 0
+        }
+    }
+}
+
+public extension Optional where Wrapped == Int {
+    /// Return 0 string if there is no value
+    var orZero: Wrapped {
+        switch self {
+        case .some(let value):
+            return value
+        case .none:
+            return 0
+        }
+    }
+}
+
+public extension Optional where Wrapped == Int64 {
+    /// Return 0 string if there is no value
+    var orZero: Wrapped {
+        switch self {
+        case .some(let value):
+            return value
+        case .none:
+            return 0
+        }
+    }
+}
+
 public extension Optional where Wrapped == String {
     /// Returns true of the optional string is nil or the underlying value is an empty string.
     var isEmpty: Bool {
@@ -607,6 +643,22 @@ public extension Optional where Wrapped == String {
     /// Returns true of the optional string is a non-empty string.
     var isPresent: Bool {
         !isEmpty
+    }
+
+    /// Return empty string if there is no value
+    var orEmpty: Wrapped {
+        switch self {
+        case .some(let value):
+            return value
+        case .none:
+            return ""
+        }
+    }
+
+    /// Returns the string if it's not an empty string, otherwise nil.
+    var presence: String? {
+        guard let s = self else { return nil }
+        return s.presence
     }
 }
 
@@ -620,13 +672,14 @@ public extension Optional where Wrapped == [Any] {
     var isPresent: Bool {
         !isEmpty
     }
-}
 
-public extension Optional where Wrapped == String {
-    /// Returns the string if it's not an empty string, otherwise nil.
-    var presence: String? {
-        guard let s = self else { return nil }
-        return s.presence
+    var orEmpty: Wrapped {
+        switch self {
+        case .some(let value):
+            return value
+        case .none:
+            return []
+        }
     }
 }
 
