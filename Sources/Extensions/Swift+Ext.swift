@@ -167,6 +167,7 @@ extension MutableCollection {
     }
 }
 
+public
 extension Sequence {
     /// Returns an array with the contents of this sequence, shuffled.
     /// See also [Stack Overflow](https://stackoverflow.com/questions/24026510/how-do-i-shuffle-an-array-in-swift)
@@ -175,9 +176,14 @@ extension Sequence {
         result.shuffle()
         return result
     }
+
+    /// Inverse of `filter`
+    func reject(_ isRejected: (Self.Iterator.Element) throws -> Bool) rethrows -> [Self.Iterator.Element] {
+        try filter { !(try isRejected($0)) }
+    }
 }
 
-// MARK: Arrray extensions
+// MARK: Array equatable extensions
 
 public extension Array {
     /// Randombly picks an item of the array
@@ -197,8 +203,6 @@ public extension Array {
         !isEmpty
     }
 }
-
-// MARK: Array equatable extensions
 
 public extension Array where Element: Equatable {
     /// Removes the first instance of the element from the array
