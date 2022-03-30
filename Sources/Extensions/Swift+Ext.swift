@@ -540,6 +540,10 @@ public extension String {
     var utf8Data: Data? {
         data(using: .utf8)
     }
+    
+    var base64: String? {
+        utf8Data?.base64EncodedString()
+    }
 
     /// Alias  of `contains() == false`
     func missing(_ character: Character) -> Bool {
